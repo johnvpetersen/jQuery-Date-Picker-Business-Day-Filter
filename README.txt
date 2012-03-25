@@ -35,3 +35,14 @@ Enjoy,
 
 < JVP >
 twitter: @johnvpetersen
+
+UPDATES:
+3/25/2012
+
+I uploaded fixes that address:
+
+- Overwriting an existing value in the text box
+- Limitation where only one date picker was acted on. Now, the plugin will cycle through an array of date pickers.
+
+
+
