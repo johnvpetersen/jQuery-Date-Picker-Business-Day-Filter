@@ -22,7 +22,7 @@
  * Date: Sun Aug 28 11:18:00 2011 -0400
  */ 
 
- (function ($) {
+(function ($) {
     $.fn.businessdayfilter = function (options) {
 
         var classList = $(this[0]).attr('class').split(" ");
@@ -42,8 +42,8 @@
 
         if (settings.holidayList == null && settings.disableWeekends == false) return;
 
-        var datePicker = this[0];
-
+        var datePicker = $(this[0]);
+		var datePickerValue = datePicker.val();
         var holidays = new Array();
 
 
@@ -62,10 +62,10 @@
 
         }
 
-        $(datePicker).data('disableWeekends', settings.disableWeekends);
-        $(datePicker).data('holidays', holidays);
-
-        $(datePicker).datepicker("option", "beforeShowDay", function (date) {
+        datePicker
+		.data('disableWeekends', settings.disableWeekends)
+          .data('holidays', holidays)
+          .datepicker("option", "beforeShowDay", function (date) {
 
             if (date.getDay() == 0 || date.getDay() == 6) return [!($(this).data('disableWeekends'))];
 
@@ -76,7 +76,8 @@
             if ($.inArray(dateString, $(this).data('holidays')) > -1) return [false];
 
             return [true];
-        });
+        })
+		.val(datePickerValue);
     };
 })(jQuery);
 

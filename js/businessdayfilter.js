@@ -20,9 +20,15 @@
  * http://docs.jquery.com/UI
  *
  * Date: Sun Aug 28 11:18:00 2011 -0400
+
+ * Date: Sun March 25 11:39:00 2011 -0400
+ * Fixed limitation where the plugin could only act on one object. Now, it will act on an array of items.
+ * Also fixed bug where the initial value of the textbox was getting removed.
+
+
  */ 
 
- (function ($) {
+(function ($) {
     $.fn.businessdayfilter = function (options) {
 
         var classList = $(this[0]).attr('class').split(" ");
@@ -42,14 +48,11 @@
 
         if (settings.holidayList == null && settings.disableWeekends == false) return;
 
-        var datePicker = this[0];
-
-        var holidays = new Array();
-
 
         if (settings.holidayList != null) {
-            var count = -1;
 
+            var holidays = new Array();
+            var count = -1;
 
             $.each(settings.holidayList, function (key, item) {
                 count++;
@@ -61,11 +64,19 @@
             });
 
         }
+        
 
-        $(datePicker).data('disableWeekends', settings.disableWeekends);
-        $(datePicker).data('holidays', holidays);
+	var datePickers = $(this);
 
-        $(datePicker).datepicker("option", "beforeShowDay", function (date) {
+	$.each(datePickers,function(key,value){
+
+	var datePicker = $(value);
+	var datePickerValue = datePicker.val();
+
+        datePicker
+	  .data('disableWeekends', settings.disableWeekends)
+          .data('holidays', holidays)
+          .datepicker("option", "beforeShowDay", function (date) {
 
             if (date.getDay() == 0 || date.getDay() == 6) return [!($(this).data('disableWeekends'))];
 
@@ -76,7 +87,11 @@
             if ($.inArray(dateString, $(this).data('holidays')) > -1) return [false];
 
             return [true];
-        });
+        })
+	.val(datePickerValue);
+
+	});	
+
     };
 })(jQuery);
 

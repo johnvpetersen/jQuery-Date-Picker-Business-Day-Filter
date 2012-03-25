@@ -1,7 +1,7 @@
 <html>
    <head>
       <script src="js/jquery-1.6.2.js" type="text/javascript"></script>
-      <script src="jqueryui/jquery-ui-1.8.16.custom.js" type="text/javascript"></script>
+      <script src="js/jquery-ui-1.8.16.custom.js" type="text/javascript"></script>
       <script src="js/businessdayfilter.js" type="text/javascript"></script>
 	  
 	  <link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" />
@@ -9,26 +9,30 @@
 	  <script>
 	  $(document).ready(function() {
 	  
+		dateInput = $(".dateEntry");
+	  
 		var holidayList = [
-			{"holiday":{"name":"New Years Day","date":"1-1-2011"}},
-			{"holiday":{"name":"Martin Luther King Jr. Day","date":"1-17-2011"}},
-			{"holiday":{"name":"Presidents Day","date":"2-21-2011"}},
-			{"holiday":{"name":"Memorial Day","date":"5-30-2011"}},
-			{"holiday":{"name":"Indpendence Day","date":"7-4-2011"}},
-			{"holiday":{"name":"Labor Day","date":"9-5-2011"}},
-			{"holiday":{"name":"Columbus Day","date":"10-11-2011"}},
-			{"holiday":{"name":"Veterans Day","date":"11-11-2011"}},
-			{"holiday":{"name":"Thanksgiving Day","date":"11-24-2011"}},
-			{"holiday":{"name":"Christmas Day","date":"12-25-2011"}}
+			{"holiday":{"name":"New Years Day","date":"1-2-2012"}},
+			{"holiday":{"name":"Martin Luther King Jr. Day","date":"1-18-2012"}},
+			{"holiday":{"name":"Presidents Day","date":"2-20-2012"}},
+			{"holiday":{"name":"Memorial Day","date":"5-28-2012"}},
+			{"holiday":{"name":"Indpendence Day","date":"7-4-2012"}},
+			{"holiday":{"name":"Labor Day","date":"9-3-2012"}},
+			{"holiday":{"name":"Columbus Day","date":"10-8-2012"}},
+			{"holiday":{"name":"Veterans Day","date":"11-12-2012"}},
+			{"holiday":{"name":"Thanksgiving Day","date":"11-22-2011"}},
+			{"holiday":{"name":"Christmas Day","date":"12-25-2012"}}
 			];
 	  
-	    $("#dateEntry").datepicker().businessdayfilter({holidayList: holidayList, disableWeekends: true});
+	    dateInput.datepicker().businessdayfilter({holidayList: holidayList, disableWeekends: true});
 	  
 	  });
 	  
 	  </script>
    </head>
    <body class="ui-state-default">
-      Please enter a date: <input id="dateEntry" type="text" style="width: 75px;">
+      Please enter a date: <input class="dateEntry" type="text" style="width: 75px;">
+      Please enter a date: <input class="dateEntry" type="text" style="width: 75px;">
    </body>
-</html>
+
+   </html>
